@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
   <title>Title</title>
@@ -16,6 +16,7 @@
   <header>
     <!-- Nav tabs -->
         <ul class="nav nav-tabs" id="navId" role="tablist">
+            <img src="/imgs/P&EIcon.png" class="navbar-brand" height="80px" alt="">
             <li class="nav-item">
                 <a href="#tab1Id" class="nav-link active" data-bs-toggle="tab" aria-current="page">Active</a>
             </li>
@@ -44,15 +45,16 @@
             <div class="tab-pane fade" id="tab4Id" role="tabpanel"></div>
             <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
         </div>
-
-
   </header>
+
   <main>
 
   </main>
+  
   <footer>
     <!-- place footer here -->
   </footer>
+
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
@@ -66,6 +68,7 @@
         var triggerEl = document.querySelector('#navId a')
         bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
     </script>
+
 </body>
 
 </html>

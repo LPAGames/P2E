@@ -1,0 +1,49 @@
+  
+  .card-block .btn-outline-primary {
+    width: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+  }
+  
+  .card {
+    margin: 0px 0;
+    width: 16rem;
+  }
+  
+  /* Flip Cards CSS */
+  .card-container {
+    perspective: 700px;
+    width: 21rem;
+    height: 20rem;
+  }
+  .card-flip {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease-out;
+    border: none;
+  }
+  
+  .card-flip div {
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    border: none;
+  }
+  
+  .card-flip .front {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .card-flip .back {
+    position: relative;
+    z-index: 0;
+    transform: rotateY(-180deg);
+  }
+  
+  .card-container:hover .card-flip {
+    transform: rotateY(180deg);
+  }
+  

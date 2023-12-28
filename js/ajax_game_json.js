@@ -11,10 +11,16 @@ $(document).ready(function() {
                   $.each(data, function(index, item) {
           
                         var newParsedHtml = parsedHTML;
-
+                        
+                        var videoRemove = $(newParsedHtml).find('#parsed-video-rem');
+                        if(videoRemove)
+                            $(newParsedHtml).find('#parsed-video-rem').remove();
+                            
                         //front-card
-                        var youtubeFrame = $('<iframe class="w-100 h-100 m-0 p-0" src="https://www.youtube.com/embed/' +
+                        var youtubeFrame = $('<iframe id="parsed-video-rem" class="w-100 h-100 m-0 p-0" src="https://www.youtube.com/embed/' +
                             item.youtube_id + '?autoplay=0&mute=1&controls=0"></iframe>');
+
+
                         $(newParsedHtml).find('#card-video').append(youtubeFrame);
                         $(newParsedHtml).find('#card-title').text(item.title);
                         

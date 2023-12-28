@@ -23,10 +23,8 @@ $(document).ready(function() {
               '<b>Pool $<br />' + item.pool +'</b></p></div>');
             //card_front
             var cardBodyFront = $('<div class="front card-body"></div>');
-            cardBodyFront.append(youtubeLink);
-            cardBodyFront.append(cardTitle);
-            cardBodyFront.append(cardPricePool);
-            card.append(cardBodyFront);
+            cardBodyFront.append(youtubeLink + cardTitle + cardPricePool);
+            
             //card_back
             var cardBodyBack = $('<div class="back card-body"></div>');
             if (item.image) {
@@ -36,7 +34,7 @@ $(document).ready(function() {
                 //card_back
             }
             cardBodyBack.append(cardTitle);
-            card.append(cardBodyBack);
+            card.append(cardBodyFront + cardBodyBack);
             cardContainer.append(card);
             
             $('#game_cards').append(cardContainer);

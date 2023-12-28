@@ -7,8 +7,7 @@ $(document).ready(function() {
                 $.ajax({
                     url: 'card.html',
                     success: function (data) { 
-                        var parsedHTML = $.parseHTML(data);
-                        var newParsedHtml = parsedHTML;
+                        var newParsedHtml = $.parseHTML(data);
                 
                         // var videoRemove = $(newParsedHtml).find('#parsed-video-rem');
                         // if(videoRemove)
@@ -37,9 +36,6 @@ $(document).ready(function() {
                         
                         // Example: Append parsed content to a container
                         $('#game_cards').append(newParsedHtml);
-                                
-                    
-                                
                     }
                 });
                 

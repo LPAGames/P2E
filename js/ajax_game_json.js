@@ -23,9 +23,12 @@ $(document).ready(function() {
                         
                         //card_back
                         $(newParsedHtml).find('#card-back-title').text(item.title);
+                        var imgRemove = $(newParsedHtml).find('#parsed-img-rem');
+                        if(imgRemove)
+                            $(newParsedHtml).find('#parsed-img-rem').remove();
                         if (item.image) {
-                            var cardImg = $('<img src="' + item.image + '" class="w-100 h-100" alt="Card image"></div>');
-                            cardBodyBack.append(cardImg);
+                            var cardImg = $('<img id="parsed-img-rem" src="' + item.image + '" class="w-100 h-100" alt="Card image"></div>');
+                            $(newParsedHtml).find('#card-back-img').append(cardImg);
                         }
                         
                         // Example: Append parsed content to a container

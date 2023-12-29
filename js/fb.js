@@ -37,11 +37,11 @@ function CreateCard(doc) {
   var cardHtml = '<div class="card-container border-2 shadow-lg mx-1 mb-2">' +
     '<div class="card card-flip">' + 
     '<div class="front card-block">' +
-    '<div class="card-body">' + 
-    '<div class="card-img m-0 p-0" style="height:60%;">' +
-    '<iframe class="card-video m-0 p-0" src="https://www.youtube.com/embed/' +
+    '<div class="card-body p-0">' + 
+    '<div class="card-img" style="height:60%;">' +
+    '<iframe class="card-video" src="https://www.youtube.com/embed/' +
     data.youtube_id + '?autoplay=1&mute=1&controls=0"></iframe>' +
-    '</div><h5 class="my-3 card-title text-primary"><b>' + data.title +
+    '</div><h5 class="mx-2 my-3 card-title text-primary"><b>' + data.title +
     '</b></h5> <div class="row" style="height: 5rem;">' + 
     '<div class="col">' +
     '<p class="card-subtitle text-center text-warning rounded bg-dark border border-warning shadow py-1 px-2">' +

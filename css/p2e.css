@@ -18,7 +18,7 @@
   /* Flip Cards CSS */
   .card-container {
     perspective: 700px;
-    width: 28rem;
+    width: 32rem;
     height: 22rem;
   }
   .card-flip {

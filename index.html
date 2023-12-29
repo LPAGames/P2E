@@ -15,11 +15,13 @@
   <link rel="stylesheet" href="css/p2e.css">
   
   <!-- Firebase LoginUI -->
-  <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  
 </head>
 
-<body style="background-color:#ff6f00 ;background-image: url(imgs/Background.jpg);background-size: cover;">
+<body style="background-color:#0b0f2e;">
   <header>
 
     <!-- Navbar -->
@@ -188,9 +190,9 @@
   <main>
     <!-- Carousel -->
     <div id="#Index">
-      <div class="container bg-danger bg-opacity-25 rounded-3">
-        <div class="container rounded-3  p-2" style="margin-top:80px;">
-          <div id="carouselId" class="carousel" data-bs-ride="carousel">
+      <div class="container-xxl bg-dark bg-opacity-50 rounded-3">
+        <div class="container-xxl rounded-3 border-4 border-black px-2 py-4" style="margin-top:80px;height:30%;">
+          <div id="carouselId" class="carousel" style="height: 30%;" data-bs-ride="carousel">
             <ol class="carousel-indicators" style="marker:none;">
               <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active" aria-current="true"
                 aria-label="First slide"></li>
@@ -202,7 +204,7 @@
                 <div
                   class="carousel-caption text-white text-start bg-dark bg-opacity-50 rounded-3 d-inline-flex mb-5 align-items-center p-1 w-50">
                   <img src="imgs/P&EIcon.png" class="" alt="Play 2 Earn" style="height: 7rem;">
-                  <h4>Buy games and start to earn money playing!<br><br>Easy Like That!</h4>
+                  <h4>Buy games and start to earn money playing!<br><b>Easy Like That!</b></h4>
                 </div>
               </div>
               <div class="carousel-item">
@@ -227,44 +229,48 @@
     </div>
 
     <!-- Games Search -->
-    <div class="container bg-gradient bg-opacity-25 rounded my-0 border p-3">
+    <div class="container-xxl bg-gradient bg-opacity-25 rounded my-0 border p-3">
       <div class="row">
 
         <!-- Cards -->
         <div class="col">
-          <div class="container">
+          <div class="container-xxl">
             <div id="game_cards" class="row card-columns">
 
               <div class="card-container border-2 shadow-lg mx-1 mb-2">
-                <div class="card card-flip w-100 h-100">
+                <div class="card card-flip">
                   <div class="front card-block">
-                    <div class="card-body w-100 h-100">
-                      <div class="card-img align-content-center w-100 m-0 p-0" style="height: 60%;">
-                        <iframe class="w-100 h-100 m-0 p-0"
-                          src="https://www.youtube.com/embed/HlFZ48F_teQ?autoplay=1&mute=1&controls=1">
+                    <div class="card-body">
+                      <div class="card-img m-0 p-0" style="height: 60%;">
+                        <iframe class="card-video m-0 p-0"
+                          src="https://www.youtube.com/embed/HlFZ48F_teQ?autoplay=1&mute=1&controls=0">
                         </iframe>
                       </div>
                       <h5 class="my-3 card-title text-primary">
-                        Angel Of The Abyss
+                        <b>Angel Of The Abyss</b>
                       </h5>
-                      <div class="container d-flex align-items-center justify-content-around mb-1 ">
-                        <p
-                          class="card-subtitle text-center text-warning rounded bg-dark border border-warning shadow py-1 px-2">
-                          <b>Price $<br />100</b>
-                        </p>
-                        <p
-                          class="card-subtitle text-center text-warning rounded bg-dark border border-warning shadow py-1 px-1">
-                          <b>Pool $<br />750075.57</b>
-                        </p>
+                      <div class="row" style="height: 5rem;">
+                        <div class="col">
+                          <p
+                            class="card-subtitle text-center text-warning rounded bg-dark border border-warning shadow py-1 px-1 my-2 mx-3">
+                            <b>Price $<br />100</b>
+                          </p>
+                        </div>
+                        <div class="col">
+                          <p
+                            class="card-subtitle text-center text-warning rounded bg-dark border border-warning shadow py-1 px-1 my-2 mx-3">
+                            <b>Pool $<br />750075.57</b>
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div class="back card-block">
-                    <div class="card-body h-100">
+                    <div class="card-body">
                       <h5 class="mb-3 card-title text-primary">
-                        Angel Of The Abyss
+                        <b>Angel Of The Abyss</b>
                       </h5>
-                      <div class="card-img align-content-center m-0 p-1" style="height: 60%;">
+                      <div class="card-img m-0 p-1" style="height: 60%;">
                         <img src="imgs/DragonOptGIF.gif" class="w-100 h-100" alt="">
                       </div>
                     </div>
@@ -278,7 +284,7 @@
 
             <div class="container justify-content-center">
               <nav aria-label="..." class="justify-content-center">
-                <ul class="pagination justify-content-center pt-2 mt-2">
+                <ul class="pagination justify-content-center pt-2 mt-4">
                   <li class="page-item">
                     <a class="page-link" href="#">Previous</a>
                   </li>
@@ -297,7 +303,7 @@
           </div>
         </div>
 
-        <div class="col-2 justify-content-start">
+        <div class="col-md-2 justify-content-start">
           <!-- SideBar -->
           <div class="bg-dark rounded flex-shrink-0 p-0 " style="width: 12rem;">
             <h4 class="p-2">Search</h4>
@@ -445,66 +451,76 @@
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
+  </script>
 
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
     integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
+  </script>
+
+  <!-- Firebase JavaScript Libraries -->
+  <script type="module">
+    // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    // import { getAuth, onAuthStateChanged,signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    // import { collection, getDocs, addDoc, getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    // // TODO: Add SDKs for Firebase products that you want to use
+    // // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // // Your web app's Firebase configuration
+    // // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    // const firebaseConfig = {
+    //   apiKey: "AIzaSyDVevm68YOQAd01bMTyaswAb9j8-TJOvvM",
+    //   authDomain: "p2earn-f36ae.firebaseapp.com",
+    //   projectId: "p2earn-f36ae",
+    //   storageBucket: "p2earn-f36ae.appspot.com",
+    //   messagingSenderId: "596533943453",
+    //   appId: "1:596533943453:web:425590cc182078b1754874",
+    //   measurementId: "G-2S1Q79MMN5"
+    // };
+
+    // // Initialize Firebase
+    // const app = initializeApp(firebaseConfig);
+
+    // //firestore
+    // const firestore = getFirestore(app);
+    // const querySnapshot = await getDocs(collection(firestore, "games"));
+    //   querySnapshot.forEach((doc) => {
+    //   console.log(`${doc.id} => ${doc.data()}`);
+    // });
+
+    // // Authentication
+    // const auth = getAuth(app);
+    // const gProvider = new GoogleAuthProvider();
+    // signInWithPopup(auth, gProvider)
+    //   .then((result) => {
+    //     // This gives you a Google Access Token. You can use it to access the Google API.
+    //     const credential = GoogleAuthProvider.credentialFromResult(result);
+    //     const token = credential.accessToken;
+    //     // The signed-in user info.
+    //     const user = result.user;
+    //     // IdP data available using getAdditionalUserInfo(result)
+    //     // ...
+    //     console.log(credential + ' / ' + token + ' / ' + user);
+    //   }).catch((error) => {
+    //     // Handle Errors here.
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     // The email of the user's account used.
+    //     const email = error.customData.email;
+    //     // The AuthCredential type that was used.
+    //     const credential = GoogleAuthProvider.credentialFromError(error);
+    //     // ...
+    //     console.log(errorCode + ' / ' + errorMessage + ' / ' + email + ' / ' + credential);
+    //   });
     </script>
 
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged,signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyDVevm68YOQAd01bMTyaswAb9j8-TJOvvM",
-      authDomain: "p2earn-f36ae.firebaseapp.com",
-      projectId: "p2earn-f36ae",
-      storageBucket: "p2earn-f36ae.appspot.com",
-      messagingSenderId: "596533943453",
-      appId: "1:596533943453:web:425590cc182078b1754874",
-      measurementId: "G-2S1Q79MMN5"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const firestore = getFirestore();
-    const auth = getAuth(app);
-    const gProvider = new GoogleAuthProvider();
-    signInWithPopup(auth, gProvider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
-        console.log(credential + ' / ' + token + ' / ' + user);
-      }).catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-        console.log(errorCode + ' / ' + errorMessage + ' / ' + email + ' / ' + credential);
-      });
-    </script>
-
-    <script defer src="js/ajax_game_json.js"></script>
+    <script defer src="js/fb.js"></script>
 </body>
 
 </html>

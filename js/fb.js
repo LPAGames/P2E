@@ -76,12 +76,12 @@ async function InitializeModal(db, doc) {
   var data= doc.data();
   $('#game-modal-title').text(data.title);
   $('#game-modal-description').html('<b>Description:</b></br>' + data.description);
-  //$('#game-modal-img-rem').remove();
-  $('#game-modal-img').append('<img id="game-modal-img-rem" src="' + data.image_link +'" class="w-100 h-100" alt="Game image">');
+  $('#game-modal-img').attr('src', data.image_link);
   const docRef = db.collection('games').doc(doc.id);
   docRef.collection("reviews").get().then((reviewSnapshot) => {
     reviewSnapshot.forEach((reviewDoc) => {
       var reviewData = reviewDoc.data();
+      console.log(reviewDoc.id, ' > ',reviewData.user_nick);
       var reviewHtml = '<i class="bi d-inline-flex ';
       if(reviewData.like)
         reviewHtml +=  'bi-hand-thumbs-up-fill"></i>';

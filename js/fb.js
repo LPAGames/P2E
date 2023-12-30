@@ -141,32 +141,27 @@ async function InitializeModal(db, doc) {
   if(data.download_token) {
     $('#game-modal-download-btn').
       click( async function(data) {
-        try {
-          var storageRef = storage.ref(data.download_filename);
-          storageRef.child().getDownloadURL()
-            .then((url) => {
-              // `url` is the download URL for 'images/stars.jpg'
 
-              // This can be downloaded directly:
-              var xhr = new XMLHttpRequest();
-              xhr.responseType = 'blob';
-              xhr.onload = (event) => {
-                var blob = xhr.response;
-              };
-              xhr.open('GET', url);
-              xhr.send();
+        var myUrl = fetch(data.download_token);
+        const blob = await url.blob();
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'ShogunBuild.zip';
+        link.click();
 
-              // Or inserted into an <img> element
-              var img = document.getElementById('myimg');
-              img.setAttribute('src', url);
-            })
-            .catch((error) => {
-              // Handle any errors
-          });
-        } catch (error) {
-          console.error(error);
-          // Handle errors gracefully, e.g., display an error message to the user
-        }
+        // var storageRef = storage.ref(data.download_filename);
+        // storageRef.getDownloadURL()
+        //   .then((url) => {
+        //     // `url` is the download URL for 'images/stars.jpg'
+        //     const blob = await url.blob();
+        //     const link = document.createElement('a');
+        //     link.href = URL.createObjectURL(blob);
+        //     link.download = data.download_filename;
+        //     link.click();
+        //   })
+        //   .catch((error) => {
+        //     console.log(error);
+        // });
     });
 
     $('#game-modal-download-btn').show(1500);

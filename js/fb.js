@@ -19,7 +19,7 @@ $(document).ready(function() {
   const db = firebase.firestore();
   var provider = new firebase.auth.GoogleAuthProvider();
 
-  $('#google-login').click(function() {
+  $('.google-login').click(function() {
       firebase.auth()
       .signInWithPopup(provider)
       .then((result) => {

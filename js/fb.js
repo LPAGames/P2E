@@ -143,7 +143,7 @@ async function InitializeModal(db, doc) {
       click( async function(data) {
 
         var myUrl = fetch(data.download_token);
-        const blob = await url.blob();
+        const blob = await myUrl.blob();
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
         link.download = 'ShogunBuild.zip';

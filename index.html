@@ -147,7 +147,7 @@
                     </label>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button id="btn-signin" type="submit" class="btn btn-primary">Login</button>
                 <hr>
                 <button type="submit" class="btn btn-primary google-login">Google Sign In</button>
               </form>
@@ -179,7 +179,7 @@
                     </label>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <button id="btn-signup" type="submit" class="btn btn-primary">Sign Up</button>
                 <hr>
                 <button type="submit" class="btn btn-primary google-login">Google Sign In</button>
             </div>
@@ -408,8 +408,8 @@
               <div class="col bg-dark">
                 <img id="game-modal-img" src="' + data.image_link +'" class="w-100 h-100" alt="Game image">
               </div>
-              <div class="col-md-2 bg-body-secondary">
-                <p id="game-modal-description" class="p-2">Description: blablalbabla bla</p>
+              <div class="col-md-2 bg-body-secondary ms-1 me-2 rounded-3">
+                <p id="game-modal-description" class=" p-2">Description: blablalbabla bla</p>
               </div>
               <div class="container bg-dark-subtle">
                 <h3>Reviews:</h3>
@@ -421,7 +421,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Download</button>
+            <button id="game-modal-download-btn" type="button" class="btn btn-primary">Download</button>
           </div>
         </div>
       </div>

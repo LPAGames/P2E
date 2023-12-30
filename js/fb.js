@@ -11,7 +11,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
+const storage = firebase.storage();
 
 $(document).ready(function() {
   const auth = firebase.auth();
@@ -48,7 +48,34 @@ $(document).ready(function() {
         // ...
       });
   });
-  
+
+  $('#btn-signup').click(function() {
+
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Signed in 
+      var user = userCredential.user;
+      // ...
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ..
+    });
+  });
+
+  $('#btn-signin').click(function() {
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Signed in
+      var user = userCredential.user;
+      // ...
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+    });
+  });
 
   db.collection('games').get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
@@ -111,6 +138,41 @@ async function InitializeModal(db, doc) {
   $('#game-modal-description').html('<b>Description:</b></br>' + data.description);
   $('#game-modal-img').attr('src', data.image_link);
 
+  if(data.download_token) {
+    $('#game-modal-download-btn').
+      click( async function(data) {
+        try {
+          var storageRef = storage.ref(data.download_filename);
+          storageRef.child().getDownloadURL()
+            .then((url) => {
+              // `url` is the download URL for 'images/stars.jpg'
+
+              // This can be downloaded directly:
+              var xhr = new XMLHttpRequest();
+              xhr.responseType = 'blob';
+              xhr.onload = (event) => {
+                var blob = xhr.response;
+              };
+              xhr.open('GET', url);
+              xhr.send();
+
+              // Or inserted into an <img> element
+              var img = document.getElementById('myimg');
+              img.setAttribute('src', url);
+            })
+            .catch((error) => {
+              // Handle any errors
+          });
+        } catch (error) {
+          console.error(error);
+          // Handle errors gracefully, e.g., display an error message to the user
+        }
+    });
+
+    $('#game-modal-download-btn').show(1500);
+  }
+  else $('#game-modal-download-btn').hide();
+
   $('#game-modal-reviews').empty();
   var countReviews = 0;
   const docRef = db.collection('games').doc(doc.id);
@@ -119,16 +181,16 @@ async function InitializeModal(db, doc) {
       var reviewData = reviewDoc.data();
 
       console.log(reviewDoc.id, ' > ',reviewData.user_nick);
-      var reviewHtml = '<i class="bi d-inline-flex ';
+      var reviewHtml = '<i class="bi d-inline-flex px-2 ';
       if(reviewData.like)
       reviewHtml +=  'bi-hand-thumbs-up-fill"></i>';
       else
       reviewHtml +=  'bi-hand-thumbs-down-fill"></i>';
       
-      reviewHtml += '<h5 id="review" class="d-inline-flex"> ---' + 
+      reviewHtml += '<h5 id="review" class="d-inline-flex px-2">' + 
       reviewData.user_nick + ':</h5>';
       reviewHtml += '<div class="container d-flex bg-body-secondary rounded-3 align-content-center">';
-      reviewHtml += '<p class="p-1">' + reviewData.comment + '</p></div>';
+      reviewHtml += '<p class="p-2">' + reviewData.comment + '</p></div>';
 
       // var r = $('#game-modal-reviews');
       // r.getElementsById('review').array.forEach(element => {

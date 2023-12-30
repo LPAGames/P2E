@@ -18,35 +18,37 @@ $(document).ready(function() {
   // Initialize Cloud Firestore and get a reference to the service
   const db = firebase.firestore();
   var provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithRedirect(provider);
 
-  firebase.auth()
-  .getRedirectResult()
-  .then((result) => {
-    if (result.credential) {
-      /** @type {firebase.auth.OAuthCredential} */
-      var credential = result.credential;
+  $('#google-login').click(function() {
+      firebase.auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        if (result.credential) {
+          /** @type {firebase.auth.OAuthCredential} */
+          var credential = result.credential;
 
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      var token = credential.accessToken;
-      // ...
-    }
-    // The signed-in user info.
-    var user = result.user;
-    // IdP data available in result.additionalUserInfo.profile.
-    console.log(user);
-      // ...
-  }).catch((error) => {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-    console.log(error.code,' > ',errorMessage);
-    // ...
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          var token = credential.accessToken;
+          // ...
+        }
+        // The signed-in user info.
+        var user = result.user;
+        // IdP data available in result.additionalUserInfo.profile.
+        console.log(user);
+          // ...
+      }).catch((error) => {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        console.log(error.code,' > ',errorMessage);
+        // ...
+      });
   });
+  
 
   db.collection('games').get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
@@ -96,7 +98,7 @@ function CreateCard(doc) {
     '" class="w-100 h-100" alt="Card image">';
 
   cardHtml += '<button id="card-btn-'+ doc.id +'" type="button" class="btn btn-primary stretched-link" ' + 
-    'data-bs-toggle="modal" data-bs-target="#GameModalStatic">' +
+    'data-bs-toggle="modal" data-bs-target="#game-modal-static">' +
     'Buy Now</button></div></div></div></div></div>';
   
   
@@ -108,24 +110,41 @@ async function InitializeModal(db, doc) {
   $('#game-modal-title').text(data.title);
   $('#game-modal-description').html('<b>Description:</b></br>' + data.description);
   $('#game-modal-img').attr('src', data.image_link);
+
+  $('#game-modal-reviews').empty();
+  var countReviews = 0;
   const docRef = db.collection('games').doc(doc.id);
   docRef.collection("reviews").get().then((reviewSnapshot) => {
     reviewSnapshot.forEach((reviewDoc) => {
       var reviewData = reviewDoc.data();
+
       console.log(reviewDoc.id, ' > ',reviewData.user_nick);
       var reviewHtml = '<i class="bi d-inline-flex ';
       if(reviewData.like)
-        reviewHtml +=  'bi-hand-thumbs-up-fill"></i>';
+      reviewHtml +=  'bi-hand-thumbs-up-fill"></i>';
       else
-        reviewHtml +=  'bi-hand-thumbs-down-fill"></i>';
-
-      reviewHtml += '<h5 id="review" class="d-inline-flex">' + 
-        reviewData.user_nick + '</h5>';
+      reviewHtml +=  'bi-hand-thumbs-down-fill"></i>';
+      
+      reviewHtml += '<h5 id="review" class="d-inline-flex"> ---' + 
+      reviewData.user_nick + ':</h5>';
       reviewHtml += '<div class="container d-flex bg-body-secondary rounded-3 align-content-center">';
       reviewHtml += '<p class="p-1">' + reviewData.comment + '</p></div>';
-      $('#game-modal-reviews').append();
-    })
-  })
+
+      // var r = $('#game-modal-reviews');
+      // r.getElementsById('review').array.forEach(element => {
+      //   element.data('review_id') == countReviews;
+      //   element.getElementsById('comment').text(reviewData.comment);
+      // });
+      countReviews += 1;
+      $('#game-modal-reviews').append(reviewHtml);
+    });
+    if(countReviews === 0)
+      $('#game-modal-reviews').fadeOut(50);
+    else
+      $('#game-modal-reviews').fadeIn(1000);
+  });
+  
+
 }
 
 function InitializeCards() {

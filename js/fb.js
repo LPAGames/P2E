@@ -11,20 +11,22 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
 $(document).ready(function() {
   const auth = firebase.auth();
   // Initialize Cloud Firestore and get a reference to the service
   const db = firebase.firestore();
 
-  db.collection("games").get().then((querySnapshot) => {
+  db.collection('games').get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data().title}`);
         var card = CreateCard(doc);
         $('#game_cards').append(card);
+
+        $('#card-btn-'+doc.id).click(async function() {
+            InitializeModal(db, doc);
+      });
     });
   });
-
-
 
   InitializeCards();
 });
@@ -38,10 +40,18 @@ function CreateCard(doc) {
     '<div class="card card-flip">' + 
     '<div class="front card-block">' +
     '<div class="card-body p-0">' + 
-    '<div class="card-img" style="height:60%;">' +
-    '<iframe class="card-video" src="https://www.youtube.com/embed/' +
-    data.youtube_id + '?autoplay=1&mute=1&controls=0"></iframe>' +
-    '</div><h5 class="mx-2 my-3 card-title text-primary"><b>' + data.title +
+    '<div class="card-img" style="height:60%;">';
+
+  if(data.youtube_id) {
+      cardHtml +=  '<iframe class="card-video" src="https://www.youtube.com/embed/' +
+      data.youtube_id + '?autoplay=1&mute=1&controls=0"></iframe>';
+  }
+  else {
+    cardHtml += '<img src="' + data.image_link + 
+      '" class="w-100 h-100" alt="Card image">';
+  }
+
+  cardHtml += '</div><h5 class="mx-2 my-3 card-title text-primary"><b>' + data.title +
     '</b></h5> <div class="row" style="height: 5rem;">' + 
     '<div class="col">' +
     '<p class="card-subtitle text-center text-warning rounded bg-dark border border-warning shadow py-1 px-2">' +
@@ -52,10 +62,39 @@ function CreateCard(doc) {
     '<h5 class="mb-3 card-title text-primary"><b>' + data.title + '</b></h5>' + 
     '<div class="card-img m-0 p-1" style="height: 60%;">' + 
     '<img src="' + data.image_link + 
-    '" class="w-100 h-100" alt="Card image">' + 
-    '</div></div></div></div></div>';
+    '" class="w-100 h-100" alt="Card image">';
+
+  cardHtml += '<button id="card-btn-'+ doc.id +'" type="button" class="btn btn-primary stretched-link" ' + 
+    'data-bs-toggle="modal" data-bs-target="#GameModalStatic">' +
+    'Buy Now</button></div></div></div></div></div>';
+  
   
   return cardHtml;
+}
+
+async function InitializeModal(db, doc) {
+  var data= doc.data();
+  $('#game-modal-title').text(data.title);
+  $('#game-modal-description').html('<b>Description:</b></br>' + data.description);
+  //$('#game-modal-img-rem').remove();
+  $('#game-modal-img').append('<img id="game-modal-img-rem" src="' + data.image_link +'" class="w-100 h-100" alt="Game image">');
+  const docRef = db.collection('games').doc(doc.id);
+  docRef.collection("reviews").get().then((reviewSnapshot) => {
+    reviewSnapshot.forEach((reviewDoc) => {
+      var reviewData = reviewDoc.data();
+      var reviewHtml = '<i class="bi d-inline-flex ';
+      if(reviewData.like)
+        reviewHtml +=  'bi-hand-thumbs-up-fill"></i>';
+      else
+        reviewHtml +=  'bi-hand-thumbs-down-fill"></i>';
+
+      reviewHtml += '<h5 id="review" class="d-inline-flex">' + 
+        reviewData.user_nick + '</h5>';
+      reviewHtml += '<div class="container d-flex bg-body-secondary rounded-3 align-content-center">';
+      reviewHtml += '<p class="p-1">' + reviewData.comment + '</p></div>';
+      $('#game-modal-reviews').append();
+    })
+  })
 }
 
 function InitializeCards() {

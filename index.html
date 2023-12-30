@@ -18,6 +18,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
   
 </head>
 
@@ -241,47 +242,6 @@
           <div class="container">
             <div id="game_cards" class="row card-columns">
 
-              <div class="card-container border-2 shadow-lg mx-1 mb-2">
-                <div class="card card-flip">
-                  <div class="front card-block">
-                    <div class="card-body p-0">
-                      <div class="card-img" style="height: 60%;">
-                        <iframe class="card-video"
-                          src="https://www.youtube.com/embed/HlFZ48F_teQ?autoplay=1&mute=1&controls=0">
-                        </iframe>
-                      </div>
-                      <h5 class="mx-2 my-3 card-title text-primary">
-                        <b>Angel Of The Abyss</b>
-                      </h5>
-                      <div class="row" style="height: 5rem;">
-                        <div class="col">
-                          <p
-                            class="card-subtitle text-center text-warning rounded bg-dark border border-warning shadow py-1 px-1 my-2 mx-3">
-                            <b>Price $<br />100</b>
-                          </p>
-                        </div>
-                        <div class="col">
-                          <p
-                            class="card-subtitle text-center text-warning rounded bg-dark border border-warning shadow py-1 px-1 my-2 mx-3">
-                            <b>Pool $<br />750075.57</b>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="back card-block">
-                    <div class="card-body">
-                      <h5 class="mb-3 card-title text-primary">
-                        <b>Angel Of The Abyss</b>
-                      </h5>
-                      <div class="card-img m-0 p-1" style="height: 60%;">
-                        <img src="imgs/DragonOptGIF.gif" class="w-100 h-100" alt="">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
             </div>
 
             <div class="container justify-content-center">
@@ -433,6 +393,41 @@
           The player will be reward when achivie something determined in your game. <br>
           <b>Ex: (Reach lvl max, Craft something, Kill Boss x times, whatever you create)</b>
         </p>
+      </div>
+    </div>
+
+    <div class="modal fade" id="GameModalStatic" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+      <div class="modal-dialog modal-dialog-centered modal-xl" >
+        <div class="modal-content" >
+          <div class="modal-header">
+            <h1 id="game-modal-title" class="modal-title fw-bolder fs-5" id="staticBackdropLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div id="game-modal-image" class="col bg-dark">
+                
+              </div>
+              <div class="col-md-2 bg-body-secondary">
+                <p id="game-modal-description" class="p-2">Description: blablalbabla bla</p>
+              </div>
+              <div class="container bg-dark-subtle">
+                <h3>Reviews:</h3>
+                <div id="game-modal-reviews" class="container bg-dark bg-opacity-50 rounded-3 my-3 p-3">
+                  <i class="bi bi-hand-thumbs-up-fill d-inline-flex"></i>
+                  <h5 id="review" class="d-inline-flex">Anom: </h5>
+                  <div class="container d-flex bg-body-secondary rounded-3 align-content-center">
+                    <p id="review-comment" class="p-1"> blablabla </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Download</button>
+          </div>
+        </div>
       </div>
     </div>
   </main>

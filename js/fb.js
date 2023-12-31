@@ -142,16 +142,16 @@ async function InitializeModal(db, doc) {
     $('#game-modal-download-btn').
       click( async function() {
 
-        console.log(data.download_token);
-        var myUrl = fetch(data.download_token);
-        const blob = await myUrl.blob();
+        // console.log(data.download_token);
+        // var myUrl = data.download_token;
+        // const blob = await myUrl.blob();
 
         const link = document.createElement('a');
 
         link.href = data.download_token;
         link.download = 'ShogunBuild.zip';
         link.click();
-
+        $(this).hide();
         // var storageRef = storage.ref(data.download_filename);
         // storageRef.getDownloadURL()
         //   .then((url) => {

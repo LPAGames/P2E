@@ -11,7 +11,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-const storage = firebase.storage();
+//const storage = firebase.storage();
 
 $(document).ready(function() {
   const auth = firebase.auth();
@@ -142,7 +142,7 @@ async function InitializeModal(db, doc) {
     $('#game-modal-download-btn').
       click( async function() {
 
-        // console.log(data.download_token);
+        //console.log(data.download_token);
         // var myUrl = data.download_token;
         // const blob = await myUrl.blob();
 
@@ -150,6 +150,7 @@ async function InitializeModal(db, doc) {
 
         link.href = data.download_token;
         link.download = 'ShogunBuild.zip';
+        link.target = '_blank';
         link.click();
         $(this).hide();
         // var storageRef = storage.ref(data.download_filename);
@@ -178,7 +179,7 @@ async function InitializeModal(db, doc) {
     reviewSnapshot.forEach((reviewDoc) => {
       var reviewData = reviewDoc.data();
 
-      console.log(reviewDoc.id, ' > ',reviewData.user_nick);
+      //console.log(reviewDoc.id, ' > ',reviewData.user_nick);
       var reviewHtml = '<i class="bi d-inline-flex px-2 ';
       if(reviewData.like)
       reviewHtml +=  'bi-hand-thumbs-up-fill"></i>';

@@ -140,13 +140,15 @@ async function InitializeModal(db, doc) {
 
   if(data.download_token) {
     $('#game-modal-download-btn').
-      click( async function(data) {
+      click( async function() {
 
+        console.log(data.download_token);
         var myUrl = fetch(data.download_token);
         const blob = await myUrl.blob();
+
         const link = document.createElement('a');
-        
-        link.href = URL.createObjectURL(blob);
+
+        link.href = data.download_token;
         link.download = 'ShogunBuild.zip';
         link.click();
 
